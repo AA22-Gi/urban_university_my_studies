@@ -16,5 +16,5 @@ async def start_tournament():
     task_3 = asyncio.create_task(start_strongman('Apollon', 5))
 
 
-asyncio.run(start_strongman())
+asyncio.run(start_tournament())
 
