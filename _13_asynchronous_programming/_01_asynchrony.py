@@ -11,4 +11,7 @@ async def start_strongman(name, power):
 
 
 async def start_tournament():
-    pass
+    task_1 = start_strongman('Pasha', 3)
+    task_2 = start_strongman('Denis', 4)
+    task_2 = start_strongman('Apollon', 5)
+
