@@ -17,5 +17,5 @@ async def start_tournament():
     await task_2
     await task_3
 
-
-asyncio.run(start_tournament())
+if __name__ == '__main__':
+    asyncio.run(start_tournament())
