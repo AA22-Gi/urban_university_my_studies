@@ -8,14 +8,14 @@ bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 
-@dp.message_handler()
+@dp.message_handler(commands=['start'])
 async def start(message):
-    pass
+    print('Привет! Я бот помогающий твоему здоровью.')
 
 
 @dp.message_handler()
 async def all_massages(message):
-    pass
+    print('Введите команду /start, чтобы начать общение.')
 
 
 if __name__ == '__main__':
