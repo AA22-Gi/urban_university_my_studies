@@ -13,7 +13,9 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 
 
 class UserState(StatesGroup):
-
+    age = State()
+    growth = State()
+    weight = State()
 
 
     @dp.message_handler(message=['Calories'])
