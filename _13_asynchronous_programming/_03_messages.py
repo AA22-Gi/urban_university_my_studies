@@ -9,13 +9,13 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 
 
 @dp.message_handler(commands=['start'])
-async def start(message):
-    await message.answer('Привет! Я бот помогающий твоему здоровью.')
+async def start(message: types.Message):
+    await message.answer(f'{message.from_user.first_name}, привет! Я бот помогающий твоему здоровью.')
 
 
 @dp.message_handler()
 async def all_massages(message):
-    await message.answer('Введите команду /start, чтобы начать общение.')
+    await message.answer(f'{message.from_user.first_name}, введите команду /start, чтобы начать общение.')
 
 
 if __name__ == '__main__':
