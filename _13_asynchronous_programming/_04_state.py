@@ -10,7 +10,15 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 
 
 class UserState(StatesGroup):
-    pass
+    def set_age(message):
+        pass
+
+    def set_growth(message, state):
+        pass
+
+    def set_weight(message, state):
+        pass
+
 
 @dp.message_handler(commands=['start'])
 async def start(message):
