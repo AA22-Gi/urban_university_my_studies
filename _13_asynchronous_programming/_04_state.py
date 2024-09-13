@@ -1,6 +1,9 @@
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 import asyncio
+
+from pyexpat.errors import messages
+
 from api_bot import API
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
@@ -10,8 +13,12 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 
 
 class UserState(StatesGroup):
-    def set_age(message):
-        pass
+
+
+
+    @dp.message_handler(message=['Calories'])
+    async def set_age(message):
+        await message.answer('Введите свой возраст:')
 
     def set_growth(message, state):
         pass
