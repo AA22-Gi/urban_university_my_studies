@@ -2,6 +2,7 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 import asyncio
 from api_bot import API
+from aiogram.dispatcher.filters.state import State, StatesGroup
 
 api = API
 bot = Bot(token=api)
