@@ -19,6 +19,9 @@ class UserState(StatesGroup):
     def set_weight(message, state):
         pass
 
+    def send_calories(message, state):
+        pass
+
 
 @dp.message_handler(commands=['start'])
 async def start(message):
