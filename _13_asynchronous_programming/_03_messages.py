@@ -14,7 +14,7 @@ async def start(message: types.Message):
 
 
 @dp.message_handler()
-async def all_massages(message):
+async def all_massages(message: types.Message):
     await message.answer(f'{message.from_user.first_name}, введите команду /start, чтобы начать общение.')
 
 
