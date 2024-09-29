@@ -27,6 +27,11 @@ class UserState(StatesGroup):
     weight = State()
 
 
+@dp.message_handler(text=['Рассчитать'])
+async def main_menu(message):
+    await message.answer('Выберите опцию: ', reply_markup=inline_kb)
+
+
 @dp.message_handler(commands=['start'])
 async def start(message):
     await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=kb)
