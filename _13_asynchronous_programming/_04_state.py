@@ -38,9 +38,12 @@ async def set_weight(message, state):
     await message.message.answer('Введите свой вес: ')
     await UserState.weight.set()
 
+@dp.message_handler(state=UserState.weight)
+async def send_calories(message, state):
+    await state.update_data(calories=message.text)
+    data = state.get_data()
 
-def send_calories(message, state):
-    pass
+
 
 
 @dp.message_handler(commands=['start'])
