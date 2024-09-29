@@ -13,6 +13,7 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 kb = ReplyKeyboardMarkup()
 button1 = KeyboardButton(text='Рассчитать')
 button2 = KeyboardButton(text='Информация')
+kb.row(button1, button2)
 
 
 class UserState(StatesGroup):
@@ -23,8 +24,7 @@ class UserState(StatesGroup):
 
 @dp.message_handler(commands=['start'])
 async def start(message):
-    await message.answer('Привет! Я бот помогающий твоему здоровью.\n'
-                         'Если Вы хотите рассчитать суточную норму калорий введите "Calories"')
+    await message.answer('Привет! Я бот помогающий твоему здоровью.')
 
 
 @dp.message_handler(text=['Рассчитать'])
