@@ -4,6 +4,7 @@ import asyncio
 from pyexpat.errors import messages
 from api_bot import API
 from aiogram.dispatcher.filters.state import State, StatesGroup
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 api = API
 bot = Bot(token=api)
