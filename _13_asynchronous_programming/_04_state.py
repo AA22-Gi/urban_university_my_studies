@@ -24,9 +24,11 @@ async def set_age(message: types.Message):
     await message.answer('Введите свой возраст:')
     await UserState.age.set()
 
-
-def set_growth(message, state):
-    pass
+@dp.message_handler(state=UserState.age)
+async def set_growth(message, state):
+    await state.update_data(age=message.text)
+    await message.message.answer('Введите свой рост: ')
+    await UserState.growth.set()
 
 
 def set_weight(message, state):
