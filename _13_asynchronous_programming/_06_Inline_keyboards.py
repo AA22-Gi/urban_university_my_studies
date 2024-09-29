@@ -43,9 +43,10 @@ async def start(message):
     await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=kb)
 
 
-@dp.message_handler(text=['Рассчитать'])
-async def set_age(message):
-    await message.answer('Введите свой возраст: ')
+@dp.callback_query_handler(text=['calories'])
+async def set_age(call):
+    await call.message.answer('Введите свой возраст: ')
+    await call.answer()
     await UserState.age.set()
 
 
