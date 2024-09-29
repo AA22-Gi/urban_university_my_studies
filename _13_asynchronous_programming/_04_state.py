@@ -28,15 +28,16 @@ async def set_age(message: types.Message):
 @dp.message_handler(state=UserState.age)
 async def set_growth(message, state):
     await state.update_data(age=message.text)
-    await message.message.answer('Введите свой рост: ')
+    await message.answer('Введите свой рост: ')
     await UserState.growth.set()
 
 
 @dp.message_handler(state=UserState.growth)
 async def set_weight(message, state):
     await state.update_data(weight=message.text)
-    await message.message.answer('Введите свой вес: ')
+    await message.answer('Введите свой вес: ')
     await UserState.weight.set()
+
 
 @dp.message_handler(state=UserState.weight)
 async def send_calories(message, state):
@@ -45,16 +46,10 @@ async def send_calories(message, state):
     age = data['age']
     growth = data['growth']
     weight = data['weight']
-    #упрощенна формула Миффлина для мужчин
-    calories = 10 * weight + 6.25 * growth - 5 * age + 5
+    # упрощенна формула Миффлина для мужчин
+    calories = (10 * weight) + (6.25 * growth) - (5 * age) + 5
     await message.answer(f'Ваша норма калорий: {calories:.2f} ккал')
     await state.finish()
-
-
-
-
-
-
 
 
 @dp.message_handler(commands=['start'])
