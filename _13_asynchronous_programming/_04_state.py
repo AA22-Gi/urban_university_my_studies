@@ -19,18 +19,22 @@ class UserState(StatesGroup):
     weight = State()
 
 
-    @dp.message_handler(message=['Calories'])
-    async def set_age(message: types.Message):
-        await message.answer('Введите свой возраст:')
+@dp.message_handler(message=['Calories'])
+async def set_age(message: types.Message):
+    await message.answer('Введите свой возраст:')
+    await UserState.age.set()
 
-    def set_growth(message, state):
-        pass
 
-    def set_weight(message, state):
-        pass
+def set_growth(message, state):
+    pass
 
-    def send_calories(message, state):
-        pass
+
+def set_weight(message, state):
+    pass
+
+
+def send_calories(message, state):
+    pass
 
 
 @dp.message_handler(commands=['start'])
