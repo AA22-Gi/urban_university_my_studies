@@ -22,7 +22,7 @@ async def start(message):
                          'Если Вы хотите рассчитать суточную норму калорий введите "Calories"')
 
 
-@dp.message_handler(text=['Calories'])
+@dp.message_handler(text=['Рассчитать'])
 async def set_age(message):
     await message.answer('Введите свой возраст: ')
     await UserState.age.set()
