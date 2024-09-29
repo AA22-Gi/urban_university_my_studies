@@ -42,6 +42,13 @@ async def set_weight(message, state):
 async def send_calories(message, state):
     await state.update_data(calories=message.text)
     data = state.get_data()
+    age = data['age']
+    growth = data['growth']
+    weight = data['weight']
+    #упрощенна формула Миффлина для мужчин
+    calories = 10 * weight + 6.25 * growth - 5 * age + 5
+
+
 
 
 
