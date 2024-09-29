@@ -47,6 +47,9 @@ async def send_calories(message, state):
     weight = data['weight']
     #упрощенна формула Миффлина для мужчин
     calories = 10 * weight + 6.25 * growth - 5 * age + 5
+    await message.answer(f'Ваша норма калорий: {calories:.2f} ккал')
+
+
 
 
 
