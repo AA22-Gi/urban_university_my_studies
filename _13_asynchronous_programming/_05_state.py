@@ -10,6 +10,10 @@ api = API
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
+kb = ReplyKeyboardMarkup()
+button1 = KeyboardButton(text='Рассчитать')
+button2 = KeyboardButton(text='Информация')
+
 
 class UserState(StatesGroup):
     age = State()
