@@ -13,4 +13,4 @@ balance INTEGER NOT NULL
 ''')
 
 connection.commit()
-
+connection.close()
