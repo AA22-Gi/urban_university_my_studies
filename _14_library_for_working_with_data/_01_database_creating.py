@@ -12,3 +12,5 @@ age INTEGER,
 balance INTEGER NOT NULL
 ''')
 
+connection.commit()
+
