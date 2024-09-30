@@ -24,7 +24,7 @@ balance INTEGER NOT NULL
 # for i in range(1, 11, 3):
 #     cursor.execute('DELETE FROM Users WHERE id = ?', (i,))
 
-cursor.execute('SELECT * FROM Users')
+cursor.execute('SELECT username, email, age, balance FROM Users WHERE age != ?', (60,))
 users = cursor.fetchall()
 
 for user in users:
