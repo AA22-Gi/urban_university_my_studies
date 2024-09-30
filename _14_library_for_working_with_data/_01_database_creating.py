@@ -17,13 +17,18 @@ balance INTEGER NOT NULL
 #     cursor.execute('INSERT INTO Users(username, email, age, balance) VALUES(?, ?, ?, ?)',
 #                    (f'User{i}', f'example{i}@gmail.com', f'{i * 10}', '1000'))
 
-
 # for i in range(1, 11, 2):
 #     cursor.execute('UPDATE Users SET balance = ? WHERE id = ?',
 #                    (500, i))
 
-for i in range(1, 11, 3):
-    cursor.execute('DELETE FROM Users WHERE id = ?', (i,))
+# for i in range(1, 11, 3):
+#     cursor.execute('DELETE FROM Users WHERE id = ?', (i,))
+
+cursor.execute('SELECT * FROM Users')
+users = cursor.fetchall()
+
+for user in users:
+    print(user)
 
 connection.commit()
 connection.close()
