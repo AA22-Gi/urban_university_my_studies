@@ -29,7 +29,8 @@ users = cursor.fetchall()
 
 
 cursor.execute('DELETE FROM Users WHERE id = ?', (6,))
-
+cursor.execute('SELECT COUNT(*) FROM Users')
+total_users = cursor.fetchone()[0]
 
 
 connection.commit()
