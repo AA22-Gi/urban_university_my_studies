@@ -30,19 +30,19 @@ async def price(message):
 
 @dp.callback_query_handler(text='medium')
 async def bue_m(call):
-    await call.message.answer(texts.priseM, reply_markup=buy_kb)
+    await call.message.answer(texts.Mgame, reply_markup=buy_kb)
     await call.answer
 
 
 @dp.callback_query_handler(text='big')
 async def bue_l(call):
-    await call.message.answer(texts.priseL, reply_markup=buy_kb)
+    await call.message.answer(texts.Lgame, reply_markup=buy_kb)
     await call.answer
 
 
 @dp.callback_query_handler(text='mega')
 async def bue_xl(call):
-    await call.message.answer(texts.priseXL, reply_markup=buy_kb)
+    await call.message.answer(texts.XLgame, reply_markup=buy_kb)
     await call.answer
 
 
