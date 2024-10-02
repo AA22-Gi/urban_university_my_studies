@@ -18,12 +18,12 @@ async def start(message):
     await message.answer(texts.start, reply_markup=start_kb)
 
 
-@dp.message_handler(texts=['О нас'])
+@dp.message_handler(text=['О нас'])
 async def info(message):
     await message.answer(texts.about, reply_markup=start_kb)
 
 
-@dp.message_handler(texts=['Стоимость'])
+@dp.message_handler(text=['Стоимость'])
 async def price(message):
     await message.answer('Что Вас интересует? ', reply_markup=catalog_kb)
 
