@@ -1,7 +1,4 @@
-import api
+import api_bot
 
-API = api.API
+API = api_bot.API
 
-priseM = 1500
-priseL = 2000
-priseXL = 3000
