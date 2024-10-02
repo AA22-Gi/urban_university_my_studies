@@ -4,8 +4,10 @@ import logging
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from api_bot import API
-from aiogram.dispatcher.filters.state import State, StatesGroup
+
 from keyboards import *
+from texst import *
+from fsm import *
 
 logging.basicConfig(level=logging.INFO)
 
@@ -14,15 +16,9 @@ bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 
-class UserState(StatesGroup):
-    age = State()
-    growth = State()
-    weight = State()
-
-
 @dp.message_handler(commands=['start'])
 async def start(message):
-    await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=start_kb)
+    await message.answer(hello, reply_markup=start_kb)
 
 
 @dp.message_handler(text=['Рассчитать'])
@@ -32,7 +28,7 @@ async def main_menu(message):
 
 @dp.callback_query_handler(text='formulas')
 async def get_formulas(call):
-    await call.message.answer('10 х вес (кг) + 6,25 x рост (см) – 5 х возраст (г) + 5')
+    await call.message.answer(formulas)
     await call.answer()
 
 
@@ -50,8 +46,7 @@ async def set_growth(message, state):
         await message.answer('Введите свой рост: ')
         await UserState.growth.set()
     else:
-        await message.answer('Возраст должен быть целым числом.\n'
-                             'Попробуйте ещё раз: ')
+        await message.answer(again)
 
 
 @dp.message_handler(state=UserState.growth)
@@ -61,8 +56,7 @@ async def set_weight(message, state):
         await message.answer('Введите свой вес: ')
         await UserState.weight.set()
     else:
-        await message.answer('Рост должен быть целым числом.\n'
-                             'Попробуйте ещё раз: ')
+        await message.answer(again)
 
 
 @dp.message_handler(state=UserState.weight)
@@ -70,8 +64,7 @@ async def send_calories(message, state):
     if message.text.isdigit():
         await state.update_data(growth=message.text)
     else:
-        await message.answer('Вес должен быть целым числом.\n'
-                             'Попробуйте ещё раз: ')
+        await message.answer(again)
     data = await state.get_data()
     age = int(data['age'])
     growth = int(data['growth'])
