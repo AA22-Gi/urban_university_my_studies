@@ -1,10 +1,13 @@
 import asyncio
+import logging
+
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from api_bot import API
 from aiogram.dispatcher.filters.state import State, StatesGroup
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from keyboards import *
+
+logging.basicConfig(level=logging.INFO)
 
 api = API
 bot = Bot(token=api)
@@ -19,7 +22,7 @@ class UserState(StatesGroup):
 
 @dp.message_handler(text=['Рассчитать'])
 async def main_menu(message):
-    await message.answer('Выберите опцию: ', reply_markup=inline_kb)
+    await message.answer('Выберите опцию: ', reply_markup=catalog_kb)
 
 
 @dp.callback_query_handler(text='formulas')
@@ -30,7 +33,7 @@ async def get_formulas(call):
 
 @dp.message_handler(commands=['start'])
 async def start(message):
-    await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=kb)
+    await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=start_kb)
 
 
 @dp.callback_query_handler(text=['calories'])
