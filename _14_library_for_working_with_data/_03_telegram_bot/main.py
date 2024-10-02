@@ -3,17 +3,23 @@ import logging
 
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from api_bot import API
+from aiogram.dispatcher.filters.state import State, StatesGroup
 
+from api_bot import API
 from keyboards import *
 from texst import *
-from fsm import *
 
 logging.basicConfig(level=logging.INFO)
 
 api = API
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
+
+
+class UserState(StatesGroup):
+    age = State()
+    growth = State()
+    weight = State()
 
 
 @dp.message_handler(commands=['start'])
@@ -87,12 +93,15 @@ async def get_buying_list(message):
     await message.answer('Название: Шейкер | Описание: что-то на спортивном | Цена: 800 руб.')
     with open('1.png', 'rb') as img:
         await message.answer_photo(img)
+
     await message.answer('Название: Cкакалка | Описание: для самых ловких | Цена: 1 700 руб.')
     with open('2.png', 'rb') as img:
         await message.answer_photo(img)
+
     await message.answer('Название: Фитнес-резинки | Описание: для самых гибких | Цена: 2 500 руб.')
     with open('3.png', 'rb') as img:
         await message.answer_photo(img)
+
     await message.answer('Название: Гантели | Описание: для самых сильных | Цена: 8 600 руб.')
     with open('4.png', 'rb') as img:
         await message.answer_photo(img)
