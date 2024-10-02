@@ -10,16 +10,6 @@ api = API
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
-kb = ReplyKeyboardMarkup(resize_keyboard=True)
-button1 = KeyboardButton(text='Рассчитать')
-button2 = KeyboardButton(text='Информация')
-kb.row(button1, button2)
-
-inline_kb = InlineKeyboardMarkup()
-inline_button1 = InlineKeyboardButton(text='Рассчитать норму калорий', callback_data='calories')
-inline_button2 = InlineKeyboardButton(text='Формулы расчёта', callback_data='formulas')
-inline_kb.row(inline_button1, inline_button2)
-
 
 class UserState(StatesGroup):
     age = State()
