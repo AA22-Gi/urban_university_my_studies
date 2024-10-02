@@ -20,6 +20,11 @@ class UserState(StatesGroup):
     weight = State()
 
 
+@dp.message_handler(commands=['start'])
+async def start(message):
+    await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=start_kb)
+
+
 @dp.message_handler(text=['Рассчитать'])
 async def main_menu(message):
     await message.answer('Выберите опцию: ', reply_markup=catalog_kb)
@@ -29,11 +34,6 @@ async def main_menu(message):
 async def get_formulas(call):
     await call.message.answer('10 х вес (кг) + 6,25 x рост (см) – 5 х возраст (г) + 5')
     await call.answer()
-
-
-@dp.message_handler(commands=['start'])
-async def start(message):
-    await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=start_kb)
 
 
 @dp.callback_query_handler(text=['calories'])
