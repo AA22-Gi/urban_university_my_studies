@@ -17,13 +17,39 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 async def start(message):
     await message.answer(texts.start, reply_markup=start_kb)
 
-@dp.message_handler(texts =['О нас'])
+
+@dp.message_handler(texts=['О нас'])
 async def info(message):
     await message.answer(texts.about, reply_markup=start_kb)
 
-@dp.message_handler(texts =['Стоимость'])
+
+@dp.message_handler(texts=['Стоимость'])
 async def price(message):
     await message.answer('Что Вас интересует? ', reply_markup=catalog_kb)
+
+
+@dp.callback_query_handler(text='medium')
+async def bue_m(call):
+    await call.message.answer(texts.priseM, reply_markup=buy_kb)
+    await call.answer
+
+
+@dp.callback_query_handler(text='big')
+async def bue_l(call):
+    await call.message.answer(texts.priseL, reply_markup=buy_kb)
+    await call.answer
+
+
+@dp.callback_query_handler(text='mega')
+async def bue_xl(call):
+    await call.message.answer(texts.priseXL, reply_markup=buy_kb)
+    await call.answer
+
+
+@dp.callback_query_handler(text='other')
+async def bue_other(call):
+    await call.message.answer(texts.other, reply_markup=buy_kb)
+    await call.answer
 
 
 if __name__ == '__main__':
