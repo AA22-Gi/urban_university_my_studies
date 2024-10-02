@@ -1,17 +1,24 @@
 import asyncio
-import logging
-
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from config import *
+from api_bot import API
 from aiogram.dispatcher.filters.state import State, StatesGroup
-from keyboards import *
-from texts import *
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-logging.basicConfig(level=logging.INFO)
-
-bot = Bot(token=API)
+api = API
+bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
+
+kb = ReplyKeyboardMarkup(resize_keyboard=True)
+button1 = KeyboardButton(text='Рассчитать')
+button2 = KeyboardButton(text='Информация')
+kb.row(button1, button2)
+
+inline_kb = InlineKeyboardMarkup()
+inline_button1 = InlineKeyboardButton(text='Рассчитать норму калорий', callback_data='calories')
+inline_button2 = InlineKeyboardButton(text='Формулы расчёта', callback_data='formulas')
+inline_kb.row(inline_button1, inline_button2)
 
 
 class UserState(StatesGroup):
@@ -22,18 +29,18 @@ class UserState(StatesGroup):
 
 @dp.message_handler(text=['Рассчитать'])
 async def main_menu(message):
-    await message.answer('Выберите опцию: ', reply_markup=info_kb)
+    await message.answer('Выберите опцию: ', reply_markup=inline_kb)
 
 
 @dp.callback_query_handler(text='formulas')
 async def get_formulas(call):
-    await call.message.answer(formulas)
+    await call.message.answer('10 х вес (кг) + 6,25 x рост (см) – 5 х возраст (г) + 5')
     await call.answer()
 
 
 @dp.message_handler(commands=['start'])
 async def start(message):
-    await message.answer(start, reply_markup=start_kb)
+    await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=kb)
 
 
 @dp.callback_query_handler(text=['calories'])
@@ -85,6 +92,7 @@ async def send_calories(message, state):
 @dp.message_handler()
 async def all_massages(message):
     await message.answer('Введите команду /start, чтобы начать общение.')
+
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
