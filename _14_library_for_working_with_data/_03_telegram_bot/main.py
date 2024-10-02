@@ -83,35 +83,26 @@ async def send_calories(message, state):
 
 
 @dp.message_handler(text=['Купить'])
-async def prod(message):
-    await message.answer('Рады Вас видеть!', reply_markup=product_kb)
-
-
-@dp.callback_query_handler(text='shaker')
-async def prod_1(call):
+async def get_buying_list(message):
+    await message.answer('Название: Шейкер | Описание: что-то на спортивном | Цена: 800 руб.')
     with open('1.png', 'rb') as img:
-        await call.message.answer_photo(img, 'Шейкер')
-    await call.answer()
-
-
-@dp.callback_query_handler(text='jump_rope')
-async def prod_2(call):
+        await message.answer_photo(img)
+    await message.answer('Название: Cкакалка | Описание: для самых ловких | Цена: 1 700 руб.')
     with open('2.png', 'rb') as img:
-        await call.message.answer_photo(img, 'Скакалка')
-    await call.answer()
-
-
-@dp.callback_query_handler(text='elastic_band')
-async def prod_3(call):
+        await message.answer_photo(img)
+    await message.answer('Название: Фитнес-резинки | Описание: для самых гибких | Цена: 2 500 руб.')
     with open('3.png', 'rb') as img:
-        await call.message.answer_photo(img, 'Фитнес-резинки')
-    await call.answer()
-
-
-@dp.callback_query_handler(text='dumbbells')
-async def prod_4(call):
+        await message.answer_photo(img)
+    await message.answer('Название: Гантели | Описание: для самых сильных | Цена: 8 600 руб.')
     with open('4.png', 'rb') as img:
-        await call.message.answer_photo(img, 'Гантели')
+        await message.answer_photo(img)
+
+    await message.answer('Выберите продукт для покупки:', reply_markup=product_kb)
+
+
+@dp.callback_query_handler(text='product_buying')
+async def send_confirm_message(call):
+    await call.message.answer('Вы успешно приобрели продукт!')
     await call.answer()
 
 
