@@ -39,7 +39,7 @@ async def main_menu(message):
 
 @dp.callback_query_handler(text='formulas')
 async def get_formulas(call):
-    await call.message.answer(formulas)
+    await call.message.answer(formula)
     await call.answer()
 
 
@@ -90,19 +90,19 @@ async def send_calories(message, state):
 
 @dp.message_handler(text=['Купить'])
 async def get_buying_list(message):
-    await message.answer('Название: Шейкер | Описание: что-то на спортивном | Цена: 800 руб.')
+    await message.answer(product_1)
     with open('1.png', 'rb') as img:
         await message.answer_photo(img)
 
-    await message.answer('Название: Cкакалка | Описание: для самых ловких | Цена: 1 700 руб.')
+    await message.answer(product_2)
     with open('2.png', 'rb') as img:
         await message.answer_photo(img)
 
-    await message.answer('Название: Фитнес-резинки | Описание: для самых гибких | Цена: 2 500 руб.')
+    await message.answer(product_3)
     with open('3.png', 'rb') as img:
         await message.answer_photo(img)
 
-    await message.answer('Название: Гантели | Описание: для самых сильных | Цена: 8 600 руб.')
+    await message.answer(product_4)
     with open('4.png', 'rb') as img:
         await message.answer_photo(img)
 
