@@ -1,26 +1,25 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+
 start_kb = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text='Стоимость'),
-            KeyboardButton(text='О нас')
+            KeyboardButton(text='Рассчитать'),
+            KeyboardButton(text='Информация')
         ]
     ], resize_keyboard=True
 )
 
-catalog_kb = InlineKeyboardMarkup(
+info_kb = InlineKeyboardMarkup(
     inline_keyboard=[
-        [InlineKeyboardButton(text='Средняя игра', callback_data='medium')],
-        [InlineKeyboardButton(text='Большая игра', callback_data='big')],
-        [InlineKeyboardButton(text='Очень большая игра', callback_data='mega')],
-        [InlineKeyboardButton(text='Другие предложения', callback_data='other')],
+        [InlineKeyboardButton(text='Рассчитать норму калорий', callback_data='calories')],
+        [InlineKeyboardButton(text='Формулы расчёта', callback_data='formulas')],
     ]
 )
 
-buy_kb = InlineKeyboardMarkup(
-    inline_keyboard=[
-        [InlineKeyboardButton(text='Купить', url='https://yandex.ru')]
-    ]
-)
+# buy_kb = InlineKeyboardMarkup(
+#     inline_keyboard=[
+#         [InlineKeyboardButton(text='Купить', url='https://yandex.ru')]
+#     ]
+# )
