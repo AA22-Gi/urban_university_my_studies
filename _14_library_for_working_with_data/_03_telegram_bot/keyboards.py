@@ -20,9 +20,9 @@ catalog_kb = InlineKeyboardMarkup(
 
 product_kb = InlineKeyboardMarkup(
     inline_keyboard=[
-        [InlineKeyboardButton(text='Шейкер', callback_data='product_buying')],
-        [InlineKeyboardButton(text='Скакалка', callback_data='product_buying')],
-        [InlineKeyboardButton(text='Фитнес-резинки', callback_data='product_buying')],
-        [InlineKeyboardButton(text='Гантели', callback_data='product_buying')]
+        [InlineKeyboardButton(text='Шейкер', callback_data='product_buying'),
+        InlineKeyboardButton(text='Скакалка', callback_data='product_buying'),
+        InlineKeyboardButton(text='Фитнес-резинки', callback_data='product_buying'),
+        InlineKeyboardButton(text='Гантели', callback_data='product_buying')]
     ]
 )
