@@ -8,6 +8,7 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from api_bot import API
 from keyboards import *
 from texst import *
+from crud_functions import initiate_db, get_all_products
 
 logging.basicConfig(level=logging.INFO)
 
@@ -90,21 +91,10 @@ async def send_calories(message, state):
 
 @dp.message_handler(text=['Купить'])
 async def get_buying_list(message):
-    await message.answer(product_1)
-    with open('1.png', 'rb') as img:
-        await message.answer_photo(img)
-
-    await message.answer(product_2)
-    with open('2.png', 'rb') as img:
-        await message.answer_photo(img)
-
-    await message.answer(product_3)
-    with open('3.png', 'rb') as img:
-        await message.answer_photo(img)
-
-    await message.answer(product_4)
-    with open('4.png', 'rb') as img:
-        await message.answer_photo(img)
+    for i in range(1, 5):
+        await message.answer(f'Название: Product {1} | Описание: описание {i} | Цена: {i * 100}')
+        with open(f'{i}.png', 'rb') as img:
+            await message.answer_photo(img)
 
     await message.answer('Выберите продукт для покупки:', reply_markup=product_kb)
 
