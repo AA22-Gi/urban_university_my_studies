@@ -27,6 +27,20 @@ class UserState(StatesGroup):
     weight = State()
 
 
+class  RegistrationState(StatesGroup):
+    username = State()
+    email = State()
+    age = State()
+    balance = State()
+
+@dp.message_handler(text=['Регистрация'])
+async def sing_up(message):
+    await message.answer("Введите имя пользователя (только латинский алфавит):")
+    await RegistrationState.username.set()
+
+
+
+
 @dp.message_handler(commands=['start'])
 async def start(message):
     await message.answer(hello, reply_markup=start_kb)
