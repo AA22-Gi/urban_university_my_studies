@@ -8,7 +8,7 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from api_bot import API
 from keyboards import *
 from texst import *
-from crud_functions import initiate_db, get_all_products, add_goods
+from crud_functions import initiate_db, get_all_products, add_goods, add_user, is_included
 
 logging.basicConfig(level=logging.INFO)
 
@@ -27,18 +27,57 @@ class UserState(StatesGroup):
     weight = State()
 
 
-class  RegistrationState(StatesGroup):
+class RegistrationState(StatesGroup):
     username = State()
     email = State()
     age = State()
     balance = State()
 
+
 @dp.message_handler(text=['Регистрация'])
 async def sing_up(message):
-    await message.answer("Введите имя пользователя (только латинский алфавит):")
+    await message.answer('Введите имя пользователя (только латинский алфавит):')
     await RegistrationState.username.set()
 
 
+@dp.message_handler(state=RegistrationState.username)
+async def set_username(message, state):
+    username = message.text
+    if is_included(username):
+        await message.answer('Пользователь существует, введите другое имя')
+        return RegistrationState.username
+    else:
+        if username.isalpha() and username.isascii():  # Проверяем, что введен только латиница
+            await state.update_data(username=username)
+            await message.answer('Введите Ваш e-mail:')
+            await RegistrationState.email.set()
+        else:
+            await message.answer('Имя пользователя должно содержать только латинские буквы. Попробуйте снова.')
+
+
+@dp.message_handler(state=RegistrationState.email)
+async def set_email(message, state):
+    email = message.text
+    await state.update_data(email=email)
+    await message.answer('Введите свой возраст:')
+    await RegistrationState.age.set()
+
+
+@dp.message_handler(state=RegistrationState.age)
+async def set_age_for_registration(message, state):
+    if message.text.isdigit():
+        age = int(message.text)
+        await state.update_data(age=age)
+        # Баланс устанавливаем по умолчанию 1000
+        await state.update_data(balance=1000)
+        data = await state.get_data()
+        # записываем в базу данных информацию о пользователе
+        add_user(data['username'], data['email'], data['age'])
+        await state.finish()
+        await message.answer('Регистрация успешно завершена!')
+    else:
+        await message.answer('Возраст должен быть числом. Попробуйте снова.')
+        return RegistrationState.age
 
 
 @dp.message_handler(commands=['start'])
