@@ -1,15 +1,28 @@
 import sqlite3
 
+
 def initiate_db():
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
 
+    # создание таблицы Goods
     cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Goods(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    description TEXT,
-    price INTEGER NOT NULL
+    CREATE TABLE IF NOT EXISTS Goods (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        description TEXT,
+        price INTEGER NOT NULL
+    )
+    ''')
+
+    # создание таблицы Users
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS Users (
+        id INTEGER PRIMARY KEY,
+        username TEXT NOT NULL,
+        email TEXT NOT NULL,
+        age INTEGER NOT NULL,
+        balance INTEGER NOT NULL DEFAULT 1000
     )
     ''')
 
@@ -26,6 +39,7 @@ def get_all_products() -> list:
 
     connection.close()
     return products
+
 
 def add_goods():
     connection = sqlite3.connect('database.db')
