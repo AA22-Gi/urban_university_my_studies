@@ -1,7 +1,7 @@
 import sqlite3
 
 
-def initiate_db():
+def initiate_db() -> None:
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
 
@@ -41,7 +41,7 @@ def get_all_products() -> list:
     return products
 
 
-def add_goods():
+def add_goods() -> None:
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
     for i in range(1, 5):
@@ -51,7 +51,7 @@ def add_goods():
     connection.commit()
     connection.close()
 
-def add_user(username, email, age):
+def add_user(username, email, age) -> None:
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
 
@@ -62,3 +62,19 @@ def add_user(username, email, age):
 
     connection.commit()
     connection.close()
+
+
+def is_included(username) -> bool:
+    connection = sqlite3.connect('database.db')
+    cursor = connection.cursor()
+
+    cursor.execute('''
+        SELECT * FROM Users
+        WHERE username = ?
+    ''', (username,))
+
+    user = cursor.fetchone()
+    connection.close()
+
+    return user is not None
+
