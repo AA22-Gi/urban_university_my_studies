@@ -76,5 +76,4 @@ def is_included(username) -> bool:
     user = cursor.fetchone()
     connection.close()
 
-    return user is not None
-
+    return username in user
