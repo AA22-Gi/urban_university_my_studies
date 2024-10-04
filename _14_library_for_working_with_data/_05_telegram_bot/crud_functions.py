@@ -50,3 +50,15 @@ def add_goods():
 
     connection.commit()
     connection.close()
+
+def add_user(username, email, age):
+    connection = sqlite3.connect('database.db')
+    cursor = connection.cursor()
+
+    cursor.execute('''
+        INSERT INTO Users (username, email, age)
+        VALUES (?, ?, ?)
+    ''', (username, email, age))
+
+    connection.commit()
+    connection.close()
