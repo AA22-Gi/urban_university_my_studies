@@ -51,6 +51,7 @@ def add_goods() -> None:
     connection.commit()
     connection.close()
 
+
 def add_user(username, email, age) -> None:
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
@@ -76,4 +77,4 @@ def is_included(username) -> bool:
     user = cursor.fetchone()
     connection.close()
 
-    return username in user
+    return user is not None
