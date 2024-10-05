@@ -53,6 +53,7 @@ async def set_username(message, state):
             await RegistrationState.email.set()
         else:
             await message.answer('Имя пользователя должно содержать только латинские буквы. Попробуйте снова.')
+            return RegistrationState.username
 
 
 @dp.message_handler(state=RegistrationState.email)
