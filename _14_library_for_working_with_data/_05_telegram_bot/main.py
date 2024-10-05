@@ -83,12 +83,13 @@ async def set_age_for_registration(message, state):
 
 @dp.message_handler(commands=['start'])
 async def start(message):
-    await message.answer(hello, reply_markup=start_kb)
+    await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=start_kb)
 
 
 @dp.message_handler(text=['Информация'])
 async def info(message):
-    await message.answer(information)
+    await message.answer('Поздравляю, Вы в находитесь в программе позволяющей Вам рассчитать '
+                         'необходимое для Вас количество калорий.\nНажмите кнопу "Рассчитать"')
 
 
 @dp.message_handler(text=['Рассчитать'])
@@ -98,7 +99,7 @@ async def main_menu(message):
 
 @dp.callback_query_handler(text='formulas')
 async def get_formulas(call):
-    await call.message.answer(formula)
+    await call.message.answer('10 х вес (кг) + 6,25 x рост (см) – 5 х возраст (г) + 5')
     await call.answer()
 
 
@@ -116,7 +117,7 @@ async def set_growth(message, state):
         await message.answer('Введите свой рост: ')
         await UserState.growth.set()
     else:
-        await message.answer(again)
+        await message.answer('Возраст должен быть целым числом.\nПопробуйте ещё раз: ')
 
 
 @dp.message_handler(state=UserState.growth)
@@ -126,7 +127,7 @@ async def set_weight(message, state):
         await message.answer('Введите свой вес: ')
         await UserState.weight.set()
     else:
-        await message.answer(again)
+        await message.answer('Рост должен быть целым числом.\nПопробуйте ещё раз: ')
 
 
 @dp.message_handler(state=UserState.weight)
@@ -134,7 +135,7 @@ async def send_calories(message, state):
     if message.text.isdigit():
         await state.update_data(growth=message.text)
     else:
-        await message.answer(again)
+        await message.answer('Вес должен быть целым числом.\nПопробуйте ещё раз: ')
 
     data = await state.get_data()
     age = int(data['age'])
