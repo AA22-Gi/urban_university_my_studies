@@ -8,7 +8,7 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from api_bot import API
 from keyboards import *
 from texst import *
-from crud_functions import initiate_db, get_all_products, add_goods, add_user, is_included
+from crud_functions import *
 
 logging.basicConfig(level=logging.INFO)
 
