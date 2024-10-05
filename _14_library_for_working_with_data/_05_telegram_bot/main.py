@@ -7,7 +7,6 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 
 from api_bot import API
 from keyboards import *
-from texst import *
 from crud_functions import *
 
 logging.basicConfig(level=logging.INFO)
