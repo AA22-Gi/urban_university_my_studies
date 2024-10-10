@@ -5,6 +5,11 @@ app = FastAPI()
 command_to_run = 'python -m uvicorn _16_libraries_for_working_with_resources._01_fastapi_basics_and_routing:app'
 
 
+@app.get('/user/admin')
+async def admin() -> str:
+    return 'Вы вошли как администратор'
+
+
 @app.get('/')
 async def main() -> str:
     return 'Главная страница'
