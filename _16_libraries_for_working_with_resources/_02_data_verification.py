@@ -25,4 +25,4 @@ async def user_info(username: str = 'Alex', age: int = 38) -> str:
 
 
 # строка для запуска через терминал
-command_to_run = 'python -m uvicorn _16_libraries_for_working_with_resources._01_fastapi_basics_and_routing:app --reload'
+command_to_run = 'python -m uvicorn _16_libraries_for_working_with_resources._02_data_verification:app --reload'
