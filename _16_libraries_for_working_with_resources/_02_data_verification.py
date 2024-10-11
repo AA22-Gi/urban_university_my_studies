@@ -14,7 +14,7 @@ async def admin() -> str:
 
 
 @app.get('/user/{user_id}')
-async def user_id_(user_id: int) -> str:
+async def user_id_(user_id: int  = Path(de=1, le=100, description='Enter User ID', example='1')) -> str:
     return f'Вы вошли как пользователь № {user_id}'
 
 
