@@ -20,7 +20,8 @@ async def user_id_(user_id: int = Path(ge=1, le=100, description='Enter User ID'
 
 
 @app.get('/user/{username}/{age}')
-async def user_info(username: str = 'Alex', age: int = 38) -> str:
+async def user_info(username: str = Path(min_length=5, max_length=20, description='Enter username', example='UrbanUser'),
+                    age: int = Path(ge=18, le=120, description='Enter age', example='24')) -> str:
     return f'Информация о пользователе. Имя: {username}, Возраст: {age}'
 
 
