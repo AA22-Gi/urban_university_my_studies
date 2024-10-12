@@ -32,7 +32,7 @@ async def update_user_value(user_id: str,
                                                      example='24')]) -> str:
     if user_id in users:
         users[user_id] = f'Имя: {username}, возраст: {age}'
-    return f'The user {user_id} is registered'
+        return f'The user {user_id} is registered'
 
 
 @app.delete('/user/{user_id}')
