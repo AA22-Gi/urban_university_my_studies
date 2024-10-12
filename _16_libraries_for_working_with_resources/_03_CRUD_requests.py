@@ -20,3 +20,16 @@ async def create_user(username: Annotated[str, Path(min_length=4, max_length=20,
     user_id = str(max(map(int, users.keys())) + 1)
     users[user_id] = f'Имя: {username}, возраст: {age}'
     return 'User {user_id} is registered'
+
+
+@app.put('/user/{user_id}/{username}/{age}')
+async def update_user_value(user_id: str,
+                            username: Annotated[str, Path(min_length=4, max_length=20,
+                                                          description='Enter username',
+                                                          example='UrbanUser')],
+                            age: Annotated[int, Path(ge=12, le=70,
+                                                     description='Enter age',
+                                                     example='24')]):
+    if user_id in users:
+        users[user_id] = f'Имя: {username}, возраст: {age}'
+    return f'The user {user_id} is registered'
