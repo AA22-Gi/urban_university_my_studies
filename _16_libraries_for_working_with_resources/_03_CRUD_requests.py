@@ -19,7 +19,7 @@ async def create_user(username: Annotated[str, Path(min_length=4, max_length=20,
                                                example='24')]) -> str:
     user_id = str(max(map(int, users.keys())) + 1)
     users[user_id] = f'Имя: {username}, возраст: {age}'
-    return 'User {user_id} is registered'
+    return f'User {user_id} is registered'
 
 
 @app.put('/user/{user_id}/{username}/{age}')
