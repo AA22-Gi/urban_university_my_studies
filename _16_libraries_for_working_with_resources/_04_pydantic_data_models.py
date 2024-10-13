@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Path, HTTPException
 from typing import Annotated
 from pydantic import BaseModel
+import uvicorn
 
 app = FastAPI()
 users = []
@@ -38,7 +39,6 @@ async def update_user_value(user_id: str,
                             age: Annotated[int, Path(ge=12, le=70,
                                                      description='Enter age',
                                                      example='24')]) -> User:
-
     for user in users:
         if user.id == user_id:
             user.username = username
@@ -58,6 +58,5 @@ async def delete_user(user_id: str) -> User:
     raise HTTPException(status_code=404, detail='User was not found')
 
 
-
-
-command_to_run = 'python -m uvicorn _16_libraries_for_working_with_resources._03_CRUD_requests:app --reload'
+if __name__ == '__main__':
+    uvicorn.run(app, host="127.0.0.1", port=8000)
