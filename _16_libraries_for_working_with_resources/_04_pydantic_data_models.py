@@ -3,8 +3,7 @@ from typing import Annotated
 from pydantic import BaseModel
 
 app = FastAPI()
-users = {'1': 'Имя: Example, возраст: 18'}
-
+users = []
 
 @app.get('/users')
 async def get_all_users() -> dict:
