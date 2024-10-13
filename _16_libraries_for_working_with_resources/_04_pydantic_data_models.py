@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Path
 from typing import Annotated
+from pydantic import BaseModel
 
 app = FastAPI()
 users = {'1': 'Имя: Example, возраст: 18'}
