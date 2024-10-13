@@ -5,6 +5,13 @@ from pydantic import BaseModel
 app = FastAPI()
 users = []
 
+
+class User(BaseModel):
+    id: int
+    username: str
+    age: int
+
+
 @app.get('/users')
 async def get_all_users() -> dict:
     return users
