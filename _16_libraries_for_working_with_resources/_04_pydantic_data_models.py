@@ -7,13 +7,13 @@ users = []
 
 
 class User(BaseModel):
-    id: int
+    id: int = None
     username: str
     age: int
 
 
 @app.get('/users')
-async def get_all_users() -> list:
+async def get_all_users() -> list[User]:
     return users
 
 
@@ -23,10 +23,11 @@ async def create_user(username: Annotated[str, Path(min_length=4, max_length=20,
                                                     example='UrbanUser')],
                       age: Annotated[int, Path(ge=12, le=70,
                                                description='Enter age',
-                                               example='24')]) -> str:
-    user_id = str(max(map(int, users.keys())) + 1)
-    users[user_id] = f'Имя: {username}, возраст: {age}'
-    return f'User {user_id} is registered'
+                                               example='24')]) -> User:
+    user_id = users[-1].id + 1 if users else 1
+    new_user = User(id=user_id, username=username, age=age)
+    users.append(new_user)
+    return new_user
 
 
 @app.put('/user/{user_id}/{username}/{age}')
