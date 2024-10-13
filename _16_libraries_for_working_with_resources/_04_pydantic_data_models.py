@@ -51,7 +51,9 @@ async def update_user_value(user_id: Annotated[int, Path(ge=0, le=1000,
 
 
 @app.delete('/user/{user_id}')
-async def delete_user(user_id: int) -> User:
+async def delete_user(user_id: Annotated[int, Path(ge=0, le=1000,
+                                                     description='Enter user_id',
+                                                     example='2')]) -> User:
     for user in users:
         if user.id == user_id:
             users.remove(user)
