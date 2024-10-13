@@ -13,7 +13,7 @@ class User(BaseModel):
 
 
 @app.get('/users')
-async def get_all_users() -> dict:
+async def get_all_users() -> list:
     return users
 
 
