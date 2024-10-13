@@ -32,7 +32,7 @@ async def create_user(username: Annotated[str, Path(min_length=4, max_length=20,
 
 
 @app.put('/user/{user_id}/{username}/{age}')
-async def update_user_value(user_id: str,
+async def update_user_value(user_id: int,
                             username: Annotated[str, Path(min_length=4, max_length=20,
                                                           description='Enter username',
                                                           example='UrbanUser')],
@@ -49,7 +49,7 @@ async def update_user_value(user_id: str,
 
 
 @app.delete('/user/{user_id}')
-async def delete_user(user_id: str) -> User:
+async def delete_user(user_id: int) -> User:
     for user in users:
         if user.id == user_id:
             users.remove(user)
