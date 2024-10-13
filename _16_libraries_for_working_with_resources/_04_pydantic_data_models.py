@@ -33,8 +33,8 @@ async def create_user(username: Annotated[str, Path(min_length=4, max_length=20,
 
 @app.put('/user/{user_id}/{username}/{age}')
 async def update_user_value(user_id: Annotated[int, Path(ge=0, le=1000,
-                                                     description='Enter user_id',
-                                                     example='2')],
+                                                         description='Enter user_id',
+                                                         example='2')],
                             username: Annotated[str, Path(min_length=4, max_length=20,
                                                           description='Enter username',
                                                           example='UrbanUser')],
@@ -52,8 +52,8 @@ async def update_user_value(user_id: Annotated[int, Path(ge=0, le=1000,
 
 @app.delete('/user/{user_id}')
 async def delete_user(user_id: Annotated[int, Path(ge=0, le=1000,
-                                                     description='Enter user_id',
-                                                     example='2')]) -> User:
+                                                   description='Enter user_id',
+                                                   example='2')]) -> User:
     for user in users:
         if user.id == user_id:
             users.remove(user)
