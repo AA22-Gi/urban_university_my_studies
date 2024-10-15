@@ -2,6 +2,7 @@ from fastapi import FastAPI, Path, HTTPException
 from typing import Annotated
 from pydantic import BaseModel
 import uvicorn
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 users = []
