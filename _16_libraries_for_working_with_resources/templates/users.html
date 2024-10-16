@@ -11,6 +11,9 @@
                 <div class="card">
                     <ul class="list-group list-group-flush">
                         <!-- Напишите свой код здесь (перебор пользователей) -->
+                        {% for user in list_users %}
+                            <li class="list-group-item"> {{ user }} <a href="/user/{{ user }}"> {{ user.text }} </a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </section>
