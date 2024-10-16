@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Path, HTTPException
+from fastapi import FastAPI, Path, HTTPException, Request
+from fastapi.responses import HTMLResponse
 from typing import Annotated
 from pydantic import BaseModel
 import uvicorn
@@ -13,6 +14,11 @@ class User(BaseModel):
     id: int = None
     username: str
     age: int
+
+
+@app.get('/')
+async def get_users(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse('users.html', {'request': request, 'list_users': users})
 
 
 @app.get('/users')
