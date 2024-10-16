@@ -21,7 +21,7 @@ async def get_users(request: Request) -> HTMLResponse:
     return templates.TemplateResponse('users.html', {'request': request, 'list_users': users})
 
 
-@app.get('/users')
+@app.get('/users/{user_id}')
 async def get_all_users() -> list[User]:
     return users
 
