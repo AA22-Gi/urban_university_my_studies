@@ -22,7 +22,7 @@ async def get_users(request: Request) -> HTMLResponse:
 
 
 @app.get('/users/{user_id}')
-async def get_all_users(request: Request,user_id: int):
+async def get_all_users(request: Request, user_id: int):
     user = None
     for user_ in users:
         if user_.id == user_id:
