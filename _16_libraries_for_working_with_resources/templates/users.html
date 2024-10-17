@@ -4,9 +4,9 @@
         <article class="card container-fluid">
             <h2>User information</h2>
             <br>
-            <p>ID: {{ user.id }}</p>
-            <p>Username: {{ user.username }}</p>
-            <p>Age: {{ user.age }}</p>
+            <p>ID: {{user.id}}</p>
+            <p>Username: {{user.username}}</p>
+            <p>Age: {{user.age}}</p>
         </article>
     {% else %}
             <section class="container-fluid">
@@ -16,8 +16,8 @@
                     <ul class="list-group list-group-flush">
                         <!-- Напишите свой код здесь (перебор пользователей) -->
                         {% for user in list_users %}
-                            <li class="list-group-item"> {{ user }}
-                                <a href="/user/{{ user.id }}"> {{ user.username }} </a> (Age: {{ user.age }})
+                            <li class="list-group-item"> <!--{{user}}-->
+                                 <a href="/users/{{ user.id }}"> {{user.id}}. {{user.username}} </a>
                             </li>
                         {% endfor %}
                     </ul>
