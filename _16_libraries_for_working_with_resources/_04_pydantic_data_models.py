@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Path, HTTPException
-from typing import Annotated
+from typing import Annotated, List
 from pydantic import BaseModel
 import uvicorn
 
@@ -14,7 +14,7 @@ class User(BaseModel):
 
 
 @app.get('/users')
-async def get_all_users() -> list[User]:
+async def get_all_users() -> List[User]:
     return users
 
 
