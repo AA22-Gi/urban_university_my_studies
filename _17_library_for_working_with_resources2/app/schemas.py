@@ -15,8 +15,12 @@ class UpdateUser(BaseModel):
 
 
 class CreateTask(BaseModel):
-    pass
+    title: str
+    content: str
+    priority: int
 
 
 class UpdateTask(BaseModel):
-    pass
+    title: str
+    content: str
+    priority: int
