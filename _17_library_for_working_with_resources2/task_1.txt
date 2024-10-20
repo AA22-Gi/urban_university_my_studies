@@ -1,0 +1,40 @@
+Задача "Основные маршруты"
+Необходимо создать маршруты и написать Pydantic модели для дальнейшей работы.
+
+Маршруты:
+
+В модуле task.py напишите APIRouter с префиксом '/task' и тегом 'task',
+а также следующие маршруты, с пустыми функциями:
+    1. get '/' с функцией all_tasks.
+    2. get '/task_id' с функцией task_by_id.
+    3. post '/create' с функцией create_task.
+    4. put '/update' с функцией update_task.
+    5. delete '/delete' с функцией delete_task.
+
+В модуле user.py напишите APIRouter с префиксом '/user' и тегом 'user',
+а также следующие маршруты, с пустыми функциями:
+    1. get '/' с функцией all_users.
+    2. get '/user_id' с функцией user_by_id.
+    3. post '/create' с функцией create_user.
+    4. put '/update' с функцией update_user.
+    5. delete '/delete' с функцией delete_user.
+
+В файле main.py создайте сущность FastAPI(), напишите один маршрут для неё - '/',
+по которому функция возвращает словарь - {"message": "Welcome to Taskmanager"}.
+Импортируйте объекты APIRouter и подключите к ранее созданному приложению FastAPI,
+объединив все маршруты в одно приложение.
+
+Схемы:
+
+Создайте 4 схемы в модуле schemas.py, наследуемые от BaseModel,
+для удобной работы с будущими объектами БД:
+    1. CreateUser с атрибутами: username(str), firstname(str), lastname(str) и age(int)
+    2. UpdateUser с атрибутами: firstname(str), lastname(str) и age(int)
+    3. CreateTask с атрибутами: title(str), content(str), priority(int)
+    4. UpdateTask с теми же атрибутами, что и CreateTask.
+
+Обратите внимание, что 1/2 и 3/4 схемы обладают одинаковыми атрибутами.
+Таким образом вы получите подготовленные маршруты и схемы для дальнейшего описания вашего API.
+
+Примечания:
+    Запуск сервера осуществите командой python -m uvicorn main:app.
