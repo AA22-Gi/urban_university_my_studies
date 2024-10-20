@@ -9,7 +9,9 @@ class CreateUser(BaseModel):
 
 
 class UpdateUser(BaseModel):
-    pass
+    firstname: str
+    lastname: str
+    age: int
 
 
 class CreateTask(BaseModel):
