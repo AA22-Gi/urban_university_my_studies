@@ -1,6 +1,8 @@
 from _17_library_for_working_with_resources2.app.backend.db import Base
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
+from user import User
+
 
 class Task(Base):
     __tablename__ = 'tasks'
@@ -13,4 +15,9 @@ class Task(Base):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False, index=True)
     slug = Column(String, unique=True, index=True)
 
-    user = ...
+    user = relationship('User', back_populates='tasks')
+
+
+from sqlalchemy.schema import CreateTable
+
+print(CreateTable(Task.__table__))
