@@ -5,3 +5,6 @@ engine = create_engine('sqlite:///taskmanager.db', echo=True)
 
 SessionLocal = sessionmaker(bind=engine)
 
+
+class Base(DeclarativeBase):
+    pass
